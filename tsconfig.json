@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "module": "esNext",
+    "types": [
+      "node",
+      "@wdio/globals/types",
+      "expect-webdriverio",
+      "@wdio/cucumber-framework",
+      "wdio-image-comparison-service"
+    ],
+    "baseUrl": ".",
+    "target": "es2022"
+  },
+  "include": ["**/*.ts", "**/*.js", "src/**/*", "api"]
+}
