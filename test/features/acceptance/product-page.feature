@@ -82,4 +82,13 @@ Feature: Product Page
       | In Stock    | =           | 1          |
       | Price       | >           | 1000       |
 
+  @test10
+  Scenario: As a user, I can sort by price
+    When I navigate to product page
+    And I sort product by information following
+      | type        | Sort by DESC |
+      | headerTitle | Price        |
+    And I retrivie data from table
+    Then product table show as descending order by price
+
 

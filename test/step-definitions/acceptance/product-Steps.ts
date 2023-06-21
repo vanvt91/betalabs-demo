@@ -6,13 +6,19 @@ When("I navigate to product page", async function () {
   await welcomePage.clickProductPageLink();
 });
 
-When(/^I .* product by information following$/, async function (dataTable: DataTable) {
+When(/^I filter product by information following$/, async function (dataTable: DataTable) {
   this.data = dataTable.rowsHash();
   await productPage.openSortFilterMenu(this.data.headerTitle);
   await productPage.selectSortFilterItem(this.data.type);
   await productPage.selectColumn(this.data.headerTitle);
   await productPage.selectOperator(this.data.operator);
   await productPage.inputFilterData(this.data.filterData);
+});
+
+When(/^I sort product by information following$/, async function (dataTable: DataTable) {
+  this.data = dataTable.rowsHash();
+  await productPage.openSortFilterMenu(this.data.headerTitle);
+  await productPage.selectSortFilterItem(this.data.type);
 });
 
 When("I store number of products", async function () {
@@ -66,4 +72,12 @@ Then("every product belongs to at least 1 of 4 categories", async function () {
 
   expect(listProductWithoutCategory.length).toBe(0);
   expect(listProductHasCategory.length).toEqual(totalProduct);
+});
+
+Then("product table show as descending order by price", async function () {
+  const listPriceAfterSort: number[] = this.productList.map((product: { Price: string }) =>
+    Number(product.Price.replace(/,/g, ""))
+  );
+  const sortedList = listPriceAfterSort.sort((a, b) => b - a);
+  expect(JSON.stringify(sortedList)).toEqual(JSON.stringify(listPriceAfterSort));
 });
