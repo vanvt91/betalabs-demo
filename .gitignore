@@ -8,6 +8,7 @@ node_modules/
 dist/
 allure-report/
 allure-results/
+baseline-images/
 
 # Compiled Java class files
 *.class

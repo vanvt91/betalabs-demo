@@ -140,9 +140,9 @@ export const config: Options.Testrunner = {
     [
       "image-comparison",
       {
-        baselineFolder: join(process.cwd(), "./test/baseline-images"),
+        baselineFolder: join(process.cwd(), "baseline-images"),
         formatImageName: "{tag}-{logName}-{width}x{height}",
-        screenshotPath: join(process.cwd(), "./test/baseline-images/tmp/"),
+        screenshotPath: join(process.cwd(), "baseline-images/tmp/"),
         savePerInstance: true,
         autoSaveBaseline: true,
         blockOutStatusBar: true,

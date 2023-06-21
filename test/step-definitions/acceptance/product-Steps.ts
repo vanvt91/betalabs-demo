@@ -1,4 +1,6 @@
 import { Given, When, Then, DataTable } from "@wdio/cucumber-framework";
+import { stringify } from "querystring";
+import { retry } from "../../../utils/retry.js";
 import productPage from "../../pages/ProductPage.js";
 import welcomePage from "../../pages/WelcomePage.js";
 
@@ -6,20 +8,20 @@ When("I navigate to product page", async function () {
   await welcomePage.clickProductPageLink();
 });
 
-When("I filter product by information following", async function (dataTable: DataTable) {
+When(/^I .* product by information following$/, async function (dataTable: DataTable) {
   this.data = dataTable.rowsHash();
   await productPage.openSortFilterMenu(this.data.headerTitle);
-  await productPage.selectSortFilterItem("Filter");
+  await productPage.selectSortFilterItem(this.data.type);
   await productPage.selectColumn(this.data.headerTitle);
   await productPage.selectOperator(this.data.operator);
-  await productPage.inputFilterElement.setValue(this.data.filterData);
+  await productPage.inputFilterData(this.data.filterData);
 });
 
 When("I store number of products", async function () {
   this.totalProduct = await productPage.getTotalProduct();
 });
 
-When("I retrivie data from table after filtered", async function () {
+When("I retrivie data from table", async function () {
   this.productList = await productPage.getProductDataTable();
 });
 
@@ -34,13 +36,11 @@ Then("all products listed in the result have correct category in the categories 
 });
 
 Then("every product has the expected properties following", async function (dataTable: DataTable) {
-  const expectedHeaders = dataTable.hashes().map((item) => item.header);
+  const expectedHeaders: string[] = dataTable.hashes().map((item) => item.header);
   const actualHeaders = await productPage.getTableHeaderText();
   const result =
     expectedHeaders.length === actualHeaders.length &&
-    expectedHeaders.every(
-      (header: string, index: number) => header.toLowerCase() === actualHeaders[index].toLowerCase()
-    );
+    expectedHeaders.every((header, index) => header.toLocaleLowerCase() === actualHeaders[index].toLowerCase());
   expect(result).toBe(true);
 });
 
