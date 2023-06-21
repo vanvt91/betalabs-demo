@@ -11,6 +11,7 @@ class WelcomePage extends PageElements {
 
   public async clickProductPageLink() {
     await this.productPageLinkElement.click();
+    await sleepInSeconds(3);
   }
 }
 const welcomePage = new WelcomePage();
