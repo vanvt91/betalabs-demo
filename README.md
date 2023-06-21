@@ -1,6 +1,10 @@
 # WebdriverIO TypeScript BDD Cucumber Framework
 
-## Test Coverage
+## Manual testcases
+
+[Google Docs Document](https://docs.google.com/spreadsheets/d/1rTZt901zHMRlDF09OcAMSYd6WKavMjz5C89Vt_1PDic/edit#gid=0)
+
+## Automation Test Coverage
 
 ```
 - Welcome page:
@@ -9,6 +13,7 @@
 
 - Product page:
   - Filter with all column and operator will return correct data (@test1, @test5) -> PASS
+  - Sort product with price (@test10) -> PASS
   - Every product should belong to at least 1 category (@test2) -> PASS
   - Every pro duct should have correct structure (@test3) -> FAIL
   - None of the products have multiple occurrences of the same category (@test4) -> FAIL
