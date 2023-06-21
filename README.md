@@ -39,7 +39,6 @@ API test:
 Run with specific tag:
  - yarn acceptance-test --cucumberOpts.tagExpression=@test1
  - yarn api-test --cucumberOpts.tagExpression=@test8
-
 ```
 
 ## Generate html report
