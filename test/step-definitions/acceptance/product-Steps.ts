@@ -1,6 +1,4 @@
-import { Given, When, Then, DataTable } from "@wdio/cucumber-framework";
-import { stringify } from "querystring";
-import { retry } from "../../../utils/retry.js";
+import { When, Then, DataTable } from "@wdio/cucumber-framework";
 import productPage from "../../pages/ProductPage.js";
 import welcomePage from "../../pages/WelcomePage.js";
 
