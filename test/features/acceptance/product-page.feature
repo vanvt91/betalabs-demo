@@ -30,7 +30,6 @@ Feature: Product Page
     And I retrivie data from table
     Then every product belongs to at least 1 of 4 categories
 
-
   @failTest
   @test3
   Scenario: As a user, I can see every product has correct structure
